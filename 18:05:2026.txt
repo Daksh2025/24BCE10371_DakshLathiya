@@ -1,0 +1,218 @@
+1.SHOW DATABASES;
+
+USE vitcampus;
+
+SHOW TABLES;
+
+DESC cse;
+
+SELECT * FROM cse;
+
+SELECT sid, sname, marks FROM cse;
+
+ALTER TABLE cse ADD(
+    sphone BIGINT,
+    semail VARCHAR(50)
+);
+
+INSERT INTO cse VALUES
+(107, "Rahul", 89, "CSE", "India", 9876543210, "rahul@gmail.com");
+
+INSERT INTO cse VALUES
+(108, "Aisha", 92, "CSE", "Dubai", 9123456780, "aisha@gmail.com");
+
+UPDATE cse
+SET marks = 96
+WHERE sid = 107;
+
+ALTER TABLE cse
+RENAME COLUMN semail TO student_email;
+
+ALTER TABLE cse ADD(
+    city VARCHAR(30) DEFAULT 'Ahmedabad'
+);
+
+ALTER TABLE cse
+DROP COLUMN sphone;
+
+ALTER TABLE cse
+MODIFY marks DECIMAL(5,2);
+
+ALTER TABLE cse
+RENAME TO cse_students;
+
+DESC cse_students;
+
+SELECT * FROM cse_students;
+
+SELECT * FROM cse_students
+WHERE marks > 90;
+
+SELECT * FROM cse_students
+ORDER BY marks DESC;
+
+SELECT COUNT(*) FROM cse_students;
+
+SELECT AVG(marks) FROM cse_students;
+
+DELETE FROM cse_students
+WHERE sid = 108;
+
+TRUNCATE TABLE cse_students;
+
+DROP TABLE cse_students;
+
+
+
+
+
+2. 
+
+CREATE DATABASE vitcampus;
+
+USE vitcampus;
+
+
+select * from cse;
+
+drop table cse;
+
+desc cse;
+
+show tables from vitcampus;
+
+delete from eee;
+
+select * from eee;
+
+RENAME TABLE eee to ECE;
+
+CREATE TABLE Worker (
+	WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	FIRST_NAME CHAR(25),
+	LAST_NAME CHAR(25),
+	SALARY INT(15),
+	JOINING_DATE DATETIME,
+	DEPARTMENT CHAR(25)
+);
+
+INSERT INTO Worker 
+	(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		(001, 'Monika', 'Arora', 100000, '14-02-20 09.00.00', 'HR'),
+		(002, 'Niharika', 'Verma', 80000, '14-06-11 09.00.00', 'Admin'),
+		(003, 'Vishal', 'Singhal', 300000, '14-02-20 09.00.00', 'HR'),
+		(004, 'Amitabh', 'Singh', 500000, '14-02-20 09.00.00', 'Admin'),
+		(005, 'Vivek', 'Bhati', 500000, '14-06-11 09.00.00', 'Admin'),
+		(006, 'Vipul', 'Diwan', 200000, '14-06-11 09.00.00', 'Account'),
+		(007, 'Satish', 'Kumar', 75000, '14-01-20 09.00.00', 'Account'),
+		(008, 'Geetika', 'Chauhan', 90000, '14-04-11 09.00.00', 'Admin');
+
+
+select * from worker;
+
+
+UPDATE worker SET First_name='Jayanth',Last_name='V' WHERE worker_id=1;
+
+UPDATE worker SET salary = salary+5000; 
+
+DELETE FROM worker WHERE worker_id=8;
+
+
+3.CREATE DATABASE vitcampus;
+
+USE vitcampus;
+
+CREATE TABLE cse(
+    sid INT PRIMARY KEY,
+    sname VARCHAR(30),
+    marks INT,
+    sdept VARCHAR(20),
+    scountry VARCHAR(30)
+);
+
+INSERT INTO cse VALUES
+(101, "Rahul", 85, "CSE", "India");
+
+INSERT INTO cse VALUES
+(102, "Aisha", 92, "ECE", "Dubai");
+
+INSERT INTO cse VALUES
+(103, "Karan", 76, "MECH", "India");
+
+INSERT INTO cse VALUES
+(104, "Sneha", 68, "CSE", "Nepal");
+
+INSERT INTO cse VALUES
+(105, "Riya", 95, "IT", "India");
+
+SELECT * FROM cse;
+
+SELECT * FROM cse
+WHERE marks = 85;
+
+SELECT * FROM cse
+WHERE marks > 80;
+
+SELECT * FROM cse
+WHERE marks < 70;
+
+SELECT * FROM cse
+WHERE marks >= 90;
+
+SELECT * FROM cse
+WHERE marks <= 76;
+
+SELECT * FROM cse
+WHERE marks != 68;
+
+SELECT * FROM cse
+WHERE sdept = "CSE";
+
+SELECT * FROM cse
+WHERE scountry = "India";
+
+SELECT * FROM cse
+WHERE marks > 80 AND sdept = "CSE";
+
+SELECT * FROM cse
+WHERE marks < 70 OR sdept = "MECH";
+
+SELECT * FROM cse
+WHERE NOT sdept = "ECE";
+
+SELECT * FROM cse
+WHERE marks BETWEEN 70 AND 90;
+
+SELECT * FROM cse
+WHERE sname IN ("Rahul", "Sneha");
+
+SELECT * FROM cse
+WHERE sname LIKE "R%";
+
+SELECT * FROM cse
+WHERE sname LIKE "%a";
+
+SELECT * FROM cse
+ORDER BY marks ASC;
+
+SELECT * FROM cse
+ORDER BY marks DESC;
+
+SELECT COUNT(*) FROM cse;
+
+SELECT MAX(marks) FROM cse;
+
+SELECT MIN(marks) FROM cse;
+
+SELECT AVG(marks) FROM cse;
+
+UPDATE cse
+SET marks = 88
+WHERE sid = 103;
+
+DELETE FROM cse
+WHERE sid = 104;
+
+DESC cse;
+
+DROP TABLE cse;
