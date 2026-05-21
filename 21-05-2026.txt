@@ -1,0 +1,33 @@
+use vitbhopal;
+show tables from vitbhopal;
+
+select * from worker123;
+
+select First_name, department, salary from worker123 where department='HR' or department='Admin'
+order by salary asc;
+select department, sum(salary)from worker123 group by department;
+select First_name,department,joining_date from worker123 where salary>100000 order by joining_date asc;
+select department, avg(salary) from worker123 group by department order by department asc;
+select department, count(worker_id) from worker123 group by department;
+select department, sum(salary)from worker123 group by department having sum(salary)<=300000;
+
+select * from worker123 limit 2 offset 3;
+select * from toppers;
+
+
+select worker_id,First_name,department from worker123
+where worker_id in (select id in toppers);
+
+select * from worker123;
+select sum(salary), department from worker123 group by department order by sum(salary) asc limit 2;
+select first_name, salary from worker123 where department="Admin" order by salary desc limit 1 offset 1;
+
+select first_name, department, salary from worker123 where department='HR' or department='Admin' or department='Account' order by salary desc;
+
+select first_name, department, salary from worker123 w1
+where salary = (
+    select distinct salary from worker123 w2
+    where w1.department = w2.department
+    order by salary desc
+    limit 1 offset 1
+);
