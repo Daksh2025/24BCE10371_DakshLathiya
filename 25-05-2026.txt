@@ -1,0 +1,73 @@
+use vit
+switched to db vit
+db.createCollection("Student")
+{ ok: 1 }
+show collections
+Student
+db.student.drop()
+true
+db.createCollection("Employee")
+{ ok: 1 }
+show collections
+Employee
+Student
+drop.Student.drop()
+ReferenceError: drop is not defined
+db.Student.drop()
+true
+show collections
+Employee
+db.Employee.insert({name:"Udayraj",department:"CSE"})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a14583c33d989fe8d854430')
+  }
+}
+show collections
+Employee
+db.Employee.insert({name:"Tanna",department:"IT"})
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a14586233d989fe8d854431')
+  }
+}
+db.Employee.find()
+{
+  _id: ObjectId('6a14583c33d989fe8d854430'),
+  name: 'Udayraj',
+  department: 'CSE'
+}
+{
+  _id: ObjectId('6a14586233d989fe8d854431'),
+  name: 'Tanna',
+  department: 'IT'
+}
+db.Employee.insert({name:"Harsh",marks:"90",department:"Science"})
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a145bc633d989fe8d854432')
+  }
+}
+db.Employee.find()
+{
+  _id: ObjectId('6a14583c33d989fe8d854430'),
+  name: 'Udayraj',
+  department: 'CSE'
+}
+{
+  _id: ObjectId('6a14586233d989fe8d854431'),
+  name: 'Patil',
+  department: 'IT'
+}
+{
+  _id: ObjectId('6a145bc633d989fe8d854432'),
+  name: 'Aniket',
+  marks: '90',
+  department: 'Science'
+}
+vit
+
