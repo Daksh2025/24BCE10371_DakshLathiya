@@ -10,7 +10,7 @@ public class mongo {
 			Class.forName("com.mysql.cj.jdbc.Driver");  //Register
 			
 			Connection con= DriverManager.getConnection(  
-			"jdbc:mysql://localhost:3306/test","root","Uday#25032005");  
+			"jdbc:mysql://localhost:3306/test","root","DAKSH@123");  
 			
 			Statement stmt=con.createStatement();  
 			
