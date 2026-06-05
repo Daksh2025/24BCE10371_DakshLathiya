@@ -1,0 +1,709 @@
+use vit
+switched to db vit
+db.sales.insertMany([
+	{ "_id" : 1, "item" : "Americanos", "price" : 5, "size": "Short", "quantity" : 22, "date" : ISODate("2022-01-15T08:00:00Z") },
+	{ "_id" : 2, "item" : "Cappuccino", "price" : 6, "size": "Short","quantity" : 12, "date" : ISODate("2022-01-16T09:00:00Z") },
+	{ "_id" : 3, "item" : "Lattes", "price" : 15, "size": "Grande","quantity" : 25, "date" : ISODate("2022-01-16T09:05:00Z") },
+	{ "_id" : 4, "item" : "Mochas", "price" : 25,"size": "Tall", "quantity" : 11, "date" : ISODate("2022-02-17T08:00:00Z") },
+	{ "_id" : 5, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 12, "date" : ISODate("2022-02-18T21:06:00Z") },
+	{ "_id" : 6, "item" : "Cappuccino", "price" : 7, "size": "Tall","quantity" : 20, "date" : ISODate("2022-02-20T10:07:00Z") },
+	{ "_id" : 7, "item" : "Lattes", "price" : 25,"size": "Tall", "quantity" : 30, "date" : ISODate("2022-02-21T10:08:00Z") },
+	{ "_id" : 8, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 21, "date" : ISODate("2022-02-22T14:09:00Z") },
+	{ "_id" : 9, "item" : "Cappuccino", "price" : 10, "size": "Grande","quantity" : 17, "date" : ISODate("2022-02-23T14:09:00Z") },
+	{ "_id" : 10, "item" : "Americanos", "price" : 8, "size": "Tall","quantity" : 15, "date" : ISODate("2022-02-25T14:09:00Z")}
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5,
+    '5': 6,
+    '6': 7,
+    '7': 8,
+    '8': 9,
+    '9': 10
+  }
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: '$item',
+      averageQty: { $avg: '$quantity' },
+    },
+  },
+]);
+{
+  _id: 'Mochas',
+  averageQty: 11
+}
+{
+  _id: 'Cappuccino',
+  averageQty: 16.333333333333332
+}
+{
+  _id: 'Americanos',
+  averageQty: 17.5
+}
+{
+  _id: 'Lattes',
+  averageQty: 27.5
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: "$item",
+      averageQty: {
+        $multiply: [
+          { $avg: "$quantity" },
+          10
+        ]
+      }
+    }
+  }
+]);
+MongoServerError[Location40237]: The $multiply accumulator is a unary operator
+db.sales.aggregate([
+  {
+    $group: {
+      _id: "$item",
+      averageQty: {
+        $multiply: [
+          { $avg: "$quantity" },
+          10
+        ]
+      }
+    }
+  }
+]);
+MongoServerError[Location40237]: The $multiply accumulator is a unary operator
+db.sales.aggregate([
+  {
+    $group: {
+      _id: "$item",
+      avgQty: { $avg: "$quantity" }
+    }
+  },
+  {
+    $project: {
+      multipliedAvg: {
+        $multiply: ["$avgQty", 10]
+      }
+    }
+  }
+]);
+{
+  _id: 'Mochas',
+  multipliedAvg: 110
+}
+{
+  _id: 'Lattes',
+  multipliedAvg: 275
+}
+{
+  _id: 'Americanos',
+  multipliedAvg: 175
+}
+{
+  _id: 'Cappuccino',
+  multipliedAvg: 163.33333333333331
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: '$item',
+      averageAmount: { $avg: { $multiply: ['$quantity', '$price'] } },
+    },
+  },
+  { $sort: { averageAmount: 1 } },
+])
+{
+  _id: 'Cappuccino',
+  averageAmount: 127.33333333333333
+}
+{
+  _id: 'Americanos',
+  averageAmount: 140
+}
+{
+  _id: 'Mochas',
+  averageAmount: 275
+}
+{
+  _id: 'Lattes',
+  averageAmount: 562.5
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: "$item",
+      averageAmount: {
+        $avg: {
+          $multiply: ["$quantity", "$price"]
+        }
+      }
+    }
+  },
+  {
+    $match: {
+      averageAmount: { $gt: 150 }
+    }
+  }
+])
+{
+  _id: 'Lattes',
+  averageAmount: 562.5
+}
+{
+  _id: 'Mochas',
+  averageAmount: 275
+}
+db.sales.drop()
+true
+db.sales.insertMany([
+	{ "_id" : 1, "item" : "Americanos", "price" : 5, "size": "Short", "quantity" : 22, "date" : ISODate("2022-01-15T08:00:00Z") },
+	{ "_id" : 2, "item" : "Cappuccino", "price" : 6, "size": "Short","quantity" : 12, "date" : ISODate("2022-01-16T09:00:00Z") },
+	{ "_id" : 3, "item" : "Lattes", "price" : 15, "size": "Grande","quantity" : 25, "date" : ISODate("2022-01-16T09:05:00Z") },
+	{ "_id" : 4, "item" : "Mochas", "price" : 25,"size": "Tall", "quantity" : 11, "date" : ISODate("2022-02-17T08:00:00Z") },
+	{ "_id" : 5, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 12, "date" : ISODate("2022-02-18T21:06:00Z") },
+	{ "_id" : 6, "item" : "Cappuccino", "price" : 7, "size": "Tall","quantity" : 20, "date" : ISODate("2022-02-20T10:07:00Z") },
+	{ "_id" : 7, "item" : "Lattes", "price" : 25,"size": "Tall", "quantity" : 30, "date" : ISODate("2022-02-21T10:08:00Z") },
+	{ "_id" : 8, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 21, "date" : ISODate("2022-02-22T14:09:00Z") },
+	{ "_id" : 9, "item" : "Cappuccino", "price" : 10, "size": "Grande","quantity" : 17, "date" : ISODate("2022-02-23T14:09:00Z") },
+	{ "_id" : 10, "item" : "Americanos", "price" : 8, "size": "Tall","quantity" : 15, "date" : ISODate("2022-02-25T14:09:00Z")}
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5,
+    '5': 6,
+    '6': 7,
+    '7': 8,
+    '8': 9,
+    '9': 10
+  }
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: '$item',
+      itemCount: { $count: {} },
+    },
+  },
+])
+{
+  _id: 'Mochas',
+  itemCount: 1
+}
+{
+  _id: 'Cappuccino',
+  itemCount: 3
+}
+{
+  _id: 'Americanos',
+  itemCount: 4
+}
+{
+  _id: 'Lattes',
+  itemCount: 2
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: '$item',
+      itemCount: { $count: {} },
+    },
+  },
+  {
+    $match: { itemCount: { $gt: 2 } },
+  },
+]);
+{
+  _id: 'Americanos',
+  itemCount: 4
+}
+{
+  _id: 'Cappuccino',
+  itemCount: 3
+}
+db.sales.dop()
+TypeError: db.sales.dop is not a function
+db.sales.drop()
+true
+db.sales.insertMany([
+	{ "_id" : 1, "item" : "Americanos", "price" : 5, "size": "Short", "quantity" : 22, "date" : ISODate("2022-01-15T08:00:00Z") },
+	{ "_id" : 2, "item" : "Cappuccino", "price" : 6, "size": "Short","quantity" : 12, "date" : ISODate("2022-01-16T09:00:00Z") },
+	{ "_id" : 3, "item" : "Lattes", "price" : 15, "size": "Grande","quantity" : 25, "date" : ISODate("2022-01-16T09:05:00Z") },
+	{ "_id" : 4, "item" : "Mochas", "price" : 25,"size": "Tall", "quantity" : 11, "date" : ISODate("2022-02-17T08:00:00Z") },
+	{ "_id" : 5, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 12, "date" : ISODate("2022-02-18T21:06:00Z") },
+	{ "_id" : 6, "item" : "Cappuccino", "price" : 7, "size": "Tall","quantity" : 20, "date" : ISODate("2022-02-20T10:07:00Z") },
+	{ "_id" : 7, "item" : "Lattes", "price" : 25,"size": "Tall", "quantity" : 30, "date" : ISODate("2022-02-21T10:08:00Z") },
+	{ "_id" : 8, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 21, "date" : ISODate("2022-02-22T14:09:00Z") },
+	{ "_id" : 9, "item" : "Cappuccino", "price" : 10, "size": "Grande","quantity" : 17, "date" : ISODate("2022-02-23T14:09:00Z") },
+	{ "_id" : 10, "item" : "Americanos", "price" : 8, "size": "Tall","quantity" : 15, "date" : ISODate("2022-02-25T14:09:00Z")}
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5,
+    '5': 6,
+    '6': 7,
+    '7': 8,
+    '8': 9,
+    '9': 10
+  }
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: null,
+      totalQty: { $sum: '$quantity' },
+    },
+  },
+]);
+{
+  _id: null,
+  totalQty: 185
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: null,
+      totalQty: { $sum: '$quantity' },
+    },
+  },
+  { $project: { _id: 0 } },
+]);
+{
+  totalQty: 185
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: '$item',
+      totalQty: { $sum: '$quantity' },
+    },
+  },
+]);
+{
+  _id: 'Mochas',
+  totalQty: 11
+}
+{
+  _id: 'Cappuccino',
+  totalQty: 49
+}
+{
+  _id: 'Americanos',
+  totalQty: 70
+}
+{
+  _id: 'Lattes',
+  totalQty: 55
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: '$item',
+      totalQty: { $sum: '$quantity' },
+    },
+  },
+  { $sort: { totalQty: -1 } },
+]);
+{
+  _id: 'Americanos',
+  totalQty: 70
+}
+{
+  _id: 'Lattes',
+  totalQty: 55
+}
+{
+  _id: 'Cappuccino',
+  totalQty: 49
+}
+{
+  _id: 'Mochas',
+  totalQty: 11
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: '$item',
+      totalQty: { $sum: '$quantity' },
+    },
+  },
+  { $match: { totalQty: { $gt: 50 } } },
+  { $sort: { totalQty: -1 } },
+]);
+{
+  _id: 'Americanos',
+  totalQty: 70
+}
+{
+  _id: 'Lattes',
+  totalQty: 55
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: '$size',
+      totalAmount: { $sum: { $multiply: ['$price', '$quantity'] } },
+    },
+  },
+  { $sort: { totalAmount: -1 } },
+]);
+{
+  _id: 'Tall',
+  totalAmount: 1285
+}
+{
+  _id: 'Grande',
+  totalAmount: 875
+}
+{
+  _id: 'Short',
+  totalAmount: 182
+}
+db.sales.drop()
+true
+db.sales.insertMany([
+	{ "_id" : 1, "item" : "Americanos", "price" : 5, "size": "Short", "quantity" : 22, "date" : ISODate("2022-01-15T08:00:00Z") },
+	{ "_id" : 2, "item" : "Cappuccino", "price" : 6, "size": "Short","quantity" : 12, "date" : ISODate("2022-01-16T09:00:00Z") },
+	{ "_id" : 3, "item" : "Lattes", "price" : 15, "size": "Grande","quantity" : 25, "date" : ISODate("2022-01-16T09:05:00Z") },
+	{ "_id" : 4, "item" : "Mochas", "price" : 25,"size": "Tall", "quantity" : 11, "date" : ISODate("2022-02-17T08:00:00Z") },
+	{ "_id" : 5, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 12, "date" : ISODate("2022-02-18T21:06:00Z") },
+	{ "_id" : 6, "item" : "Cappuccino", "price" : 7, "size": "Tall","quantity" : 20, "date" : ISODate("2022-02-20T10:07:00Z") },
+	{ "_id" : 7, "item" : "Lattes", "price" : 25,"size": "Tall", "quantity" : 30, "date" : ISODate("2022-02-21T10:08:00Z") },
+	{ "_id" : 8, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 21, "date" : ISODate("2022-02-22T14:09:00Z") },
+	{ "_id" : 9, "item" : "Cappuccino", "price" : 10, "size": "Grande","quantity" : 17, "date" : ISODate("2022-02-23T14:09:00Z") },
+	{ "_id" : 10, "item" : "Americanos", "price" : 8, "size": "Tall","quantity" : 15, "date" : ISODate("2022-02-25T14:09:00Z")}
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5,
+    '5': 6,
+    '6': 7,
+    '7': 8,
+    '8': 9,
+    '9': 10
+  }
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: null,
+      maxQty: { $max: '$quantity' },
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+    },
+  },
+]);
+{
+  maxQty: 30
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: '$item',
+      maxQty: { $max: '$quantity' },
+    },
+  },
+]);
+{
+  _id: 'Cappuccino',
+  maxQty: 20
+}
+{
+  _id: 'Americanos',
+  maxQty: 22
+}
+{
+  _id: 'Lattes',
+  maxQty: 30
+}
+{
+  _id: 'Mochas',
+  maxQty: 11
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: '$item',
+      maxQty: { $max: { $multiply: ['$quantity', '$price'] } },
+    },
+  },
+]);
+{
+  _id: 'Lattes',
+  maxQty: 750
+}
+{
+  _id: 'Americanos',
+  maxQty: 210
+}
+{
+  _id: 'Cappuccino',
+  maxQty: 170
+}
+{
+  _id: 'Mochas',
+  maxQty: 275
+}
+db.sales.drop()
+true
+db.sales.insertMany([
+	{ "_id" : 1, "item" : "Americanos", "price" : 5, "size": "Short", "quantity" : 22, "date" : ISODate("2022-01-15T08:00:00Z") },
+	{ "_id" : 2, "item" : "Cappuccino", "price" : 6, "size": "Short","quantity" : 12, "date" : ISODate("2022-01-16T09:00:00Z") },
+	{ "_id" : 3, "item" : "Lattes", "price" : 15, "size": "Grande","quantity" : 25, "date" : ISODate("2022-01-16T09:05:00Z") },
+	{ "_id" : 4, "item" : "Mochas", "price" : 25,"size": "Tall", "quantity" : 11, "date" : ISODate("2022-02-17T08:00:00Z") },
+	{ "_id" : 5, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 12, "date" : ISODate("2022-02-18T21:06:00Z") },
+	{ "_id" : 6, "item" : "Cappuccino", "price" : 7, "size": "Tall","quantity" : 20, "date" : ISODate("2022-02-20T10:07:00Z") },
+	{ "_id" : 7, "item" : "Lattes", "price" : 25,"size": "Tall", "quantity" : 30, "date" : ISODate("2022-02-21T10:08:00Z") },
+	{ "_id" : 8, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 21, "date" : ISODate("2022-02-22T14:09:00Z") },
+	{ "_id" : 9, "item" : "Cappuccino", "price" : 10, "size": "Grande","quantity" : 17, "date" : ISODate("2022-02-23T14:09:00Z") },
+	{ "_id" : 10, "item" : "Americanos", "price" : 8, "size": "Tall","quantity" : 15, "date" : ISODate("2022-02-25T14:09:00Z")}
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5,
+    '5': 6,
+    '6': 7,
+    '7': 8,
+    '8': 9,
+    '9': 10
+  }
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: null,
+      maxQty: { $min: '$quantity' },
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+    },
+  },
+]);
+{
+  maxQty: 11
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: null,
+      minQty: { $min: '$quantity' },
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+    },
+  },
+]);
+{
+  minQty: 11
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: '$item',
+      minQty: { $min: '$quantity' },
+    },
+  },
+]);
+{
+  _id: 'Mochas',
+  minQty: 11
+}
+{
+  _id: 'Cappuccino',
+  minQty: 12
+}
+{
+  _id: 'Americanos',
+  minQty: 12
+}
+{
+  _id: 'Lattes',
+  minQty: 25
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: '$item',
+      maxQty: { $min: { $multiply: ['$quantity', '$price'] } },
+    },
+  },
+]);
+{
+  _id: 'Mochas',
+  maxQty: 275
+}
+{
+  _id: 'Lattes',
+  maxQty: 375
+}
+{
+  _id: 'Americanos',
+  maxQty: 110
+}
+{
+  _id: 'Cappuccino',
+  maxQty: 72
+}
+db.sales.aggregate([
+  {
+    $group: {
+      _id: '$item',
+      minQty: { $min: { $multiply: ['$quantity', '$price'] } },
+    },
+  },
+]);
+{
+  _id: 'Cappuccino',
+  minQty: 72
+}
+{
+  _id: 'Americanos',
+  minQty: 110
+}
+{
+  _id: 'Lattes',
+  minQty: 375
+}
+{
+  _id: 'Mochas',
+  minQty: 275
+}
+vit
+
+*******************************************************************************************************************************************************************************************
+
+
+
+
+
+
+package Mongo_DB;
+import com.mongodb.client.*;
+import org.bson.Document
+import java.util.Arrays;
+import java.util.List;
+public class mongo_agg {
+    public static void main(String[] args) {
+   
+        MongoClient mongoClient =
+                MongoClients.create("mongodb://localhost:27017");
+        
+        MongoDatabase database =
+                mongoClient.getDatabase("CollegeDB");
+        
+        MongoCollection<Document> collection =
+                database.getCollection("Students");
+       
+        collection.deleteMany(new Document());
+
+        List<Document> students = Arrays.asList(
+
+                new Document("id", 101)
+                        .append("name", "Rahul")
+                        .append("department", "CSE")
+                        .append("cgpa", 9.2),
+
+                new Document("id", 102)
+                        .append("name", "Priya")
+                        .append("department", "CSE")
+                        .append("cgpa", 9.4),
+
+                new Document("id", 103)
+                        .append("name", "Amit")
+                        .append("department", "IT")
+                        .append("cgpa", 9.1),
+
+                new Document("id", 104)
+                        .append("name", "Sneha")
+                        .append("department", "IT")
+                        .append("cgpa", 9.8),
+
+                new Document("id", 105)
+                        .append("name", "Rohit")
+                        .append("department", "ECE")
+                        .append("cgpa", 9.3),
+
+                new Document("id", 106)
+                        .append("name", "Anjali")
+                        .append("department", "ECE")
+                        .append("cgpa", 9.7)
+        );
+
+        collection.insertMany(students);
+
+        System.out.println("Students Inserted Successfully");
+
+        // DISPLAY ALL STUDENTS
+        
+        System.out.println("\nAll Students:");
+
+        for (Document doc : collection.find()) {
+            System.out.println(doc.toJson());
+        }
+
+        // AGGREGATION
+        // GROUP BY DEPARTMENT
+        
+        System.out.println("\nAggregation Result:");
+
+        AggregateIterable<Document> result =
+                collection.aggregate(Arrays.asList(
+
+                        new Document("$group",
+                                new Document("_id", "$department")
+                                        .append("averageCGPA",
+                                                new Document("$avg", "$cgpa"))
+                                        .append("maxCGPA",
+                                                new Document("$max", "$cgpa"))
+                                        .append("minCGPA",
+                                                new Document("$min", "$cgpa"))
+                                        .append("studentCount",
+                                                new Document("$sum", 1))
+                        ),
+
+                        new Document("$sort",
+                                new Document("averageCGPA", -1))
+                ));
+
+        for (Document doc : result) {
+            System.out.println(doc.toJson());
+        }
+
+        mongoClient.close();
+    }
+}
+
+
