@@ -1,0 +1,735 @@
+rs.initiate({
+  _id: "configReplSet",
+  configsvr: true,
+  members: [
+    { _id: 0, host: "localhost:27019" }
+  ]
+})
+{
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183037, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183037, i: 1 })
+}
+rs.status()
+{
+    lastWrittenWallTime: 2026-06-11T13:04:06.202Z
+  },
+  lastStableRecoveryTimestamp: Timestamp({ t: 1781183037, i: 1 }),
+  electionCandidateMetrics: {
+    lastElectionReason: 'electionTimeout',
+    lastElectionDate: 2026-06-11T13:03:57.744Z,
+    electionTerm: Long('1'),
+    lastCommittedOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    lastSeenWrittenOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    lastSeenOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    numVotesNeeded: 1,
+    priorityAtElection: 1,
+    electionTimeoutMillis: Long('10000'),
+    newTermStartDate: 2026-06-11T13:03:57.823Z,
+    wMajorityWriteAvailabilityDate: 2026-06-11T13:03:58.158Z
+  },
+  members: [
+    {
+      _id: 0,
+      name: 'localhost:27019',
+      health: 1,
+      state: 1,
+      stateStr: 'PRIMARY',
+      uptime: 90,
+      optime: { ts: Timestamp({ t: 1781183046, i: 1 }), t: Long('1') },
+      optimeDate: 2026-06-11T13:04:06.000Z,
+      optimeWritten: { ts: Timestamp({ t: 1781183046, i: 1 }), t: Long('1') },
+      optimeWrittenDate: 2026-06-11T13:04:06.000Z,
+      lastAppliedWallTime: 2026-06-11T13:04:06.202Z,
+      lastDurableWallTime: 2026-06-11T13:04:06.202Z,
+      lastWrittenWallTime: 2026-06-11T13:04:06.202Z,
+      syncSourceHost: '',
+      syncSourceId: -1,
+      infoMessage: 'Could not find member to sync from',
+      electionTime: Timestamp({ t: 1781183037, i: 2 }),
+      electionDate: 2026-06-11T13:03:57.000Z,
+      configVersion: 1,
+      configTerm: 1,
+      self: true,
+      lastHeartbeatMessage: ''
+    }
+  ],
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183046, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183046, i: 1 })
+}
+test
+
+
+rs.initiate({
+  _id: "configReplSet",
+  configsvr: true,
+  members: [
+    { _id: 0, host: "localhost:27019" }
+  ]
+})
+{
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183037, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183037, i: 1 })
+}
+rs.status()
+{
+    lastWrittenWallTime: 2026-06-11T13:04:06.202Z
+  },
+  lastStableRecoveryTimestamp: Timestamp({ t: 1781183037, i: 1 }),
+  electionCandidateMetrics: {
+    lastElectionReason: 'electionTimeout',
+    lastElectionDate: 2026-06-11T13:03:57.744Z,
+    electionTerm: Long('1'),
+    lastCommittedOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    lastSeenWrittenOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    lastSeenOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    numVotesNeeded: 1,
+    priorityAtElection: 1,
+    electionTimeoutMillis: Long('10000'),
+    newTermStartDate: 2026-06-11T13:03:57.823Z,
+    wMajorityWriteAvailabilityDate: 2026-06-11T13:03:58.158Z
+  },
+  members: [
+    {
+      _id: 0,
+      name: 'localhost:27019',
+      health: 1,
+      state: 1,
+      stateStr: 'PRIMARY',
+      uptime: 90,
+      optime: { ts: Timestamp({ t: 1781183046, i: 1 }), t: Long('1') },
+      optimeDate: 2026-06-11T13:04:06.000Z,
+      optimeWritten: { ts: Timestamp({ t: 1781183046, i: 1 }), t: Long('1') },
+      optimeWrittenDate: 2026-06-11T13:04:06.000Z,
+      lastAppliedWallTime: 2026-06-11T13:04:06.202Z,
+      lastDurableWallTime: 2026-06-11T13:04:06.202Z,
+      lastWrittenWallTime: 2026-06-11T13:04:06.202Z,
+      syncSourceHost: '',
+      syncSourceId: -1,
+      infoMessage: 'Could not find member to sync from',
+      electionTime: Timestamp({ t: 1781183037, i: 2 }),
+      electionDate: 2026-06-11T13:03:57.000Z,
+      configVersion: 1,
+      configTerm: 1,
+      self: true,
+      lastHeartbeatMessage: ''
+    }
+  ],
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183046, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183046, i: 1 })
+}
+test
+
+
+rs.initiate({
+  _id: "configReplSet",
+  configsvr: true,
+  members: [
+    { _id: 0, host: "localhost:27019" }
+  ]
+})
+{
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183037, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183037, i: 1 })
+}
+rs.status()
+{
+    lastWrittenWallTime: 2026-06-11T13:04:06.202Z
+  },
+  lastStableRecoveryTimestamp: Timestamp({ t: 1781183037, i: 1 }),
+  electionCandidateMetrics: {
+    lastElectionReason: 'electionTimeout',
+    lastElectionDate: 2026-06-11T13:03:57.744Z,
+    electionTerm: Long('1'),
+    lastCommittedOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    lastSeenWrittenOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    lastSeenOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    numVotesNeeded: 1,
+    priorityAtElection: 1,
+    electionTimeoutMillis: Long('10000'),
+    newTermStartDate: 2026-06-11T13:03:57.823Z,
+    wMajorityWriteAvailabilityDate: 2026-06-11T13:03:58.158Z
+  },
+  members: [
+    {
+      _id: 0,
+      name: 'localhost:27019',
+      health: 1,
+      state: 1,
+      stateStr: 'PRIMARY',
+      uptime: 90,
+      optime: { ts: Timestamp({ t: 1781183046, i: 1 }), t: Long('1') },
+      optimeDate: 2026-06-11T13:04:06.000Z,
+      optimeWritten: { ts: Timestamp({ t: 1781183046, i: 1 }), t: Long('1') },
+      optimeWrittenDate: 2026-06-11T13:04:06.000Z,
+      lastAppliedWallTime: 2026-06-11T13:04:06.202Z,
+      lastDurableWallTime: 2026-06-11T13:04:06.202Z,
+      lastWrittenWallTime: 2026-06-11T13:04:06.202Z,
+      syncSourceHost: '',
+      syncSourceId: -1,
+      infoMessage: 'Could not find member to sync from',
+      electionTime: Timestamp({ t: 1781183037, i: 2 }),
+      electionDate: 2026-06-11T13:03:57.000Z,
+      configVersion: 1,
+      configTerm: 1,
+      self: true,
+      lastHeartbeatMessage: ''
+    }
+  ],
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183046, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183046, i: 1 })
+}
+test
+
+
+rs.initiate({
+  _id: "configReplSet",
+  configsvr: true,
+  members: [
+    { _id: 0, host: "localhost:27019" }
+  ]
+})
+{
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183037, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183037, i: 1 })
+}
+rs.status()
+{
+    lastWrittenWallTime: 2026-06-11T13:04:06.202Z
+  },
+  lastStableRecoveryTimestamp: Timestamp({ t: 1781183037, i: 1 }),
+  electionCandidateMetrics: {
+    lastElectionReason: 'electionTimeout',
+    lastElectionDate: 2026-06-11T13:03:57.744Z,
+    electionTerm: Long('1'),
+    lastCommittedOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    lastSeenWrittenOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    lastSeenOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    numVotesNeeded: 1,
+    priorityAtElection: 1,
+    electionTimeoutMillis: Long('10000'),
+    newTermStartDate: 2026-06-11T13:03:57.823Z,
+    wMajorityWriteAvailabilityDate: 2026-06-11T13:03:58.158Z
+  },
+  members: [
+    {
+      _id: 0,
+      name: 'localhost:27019',
+      health: 1,
+      state: 1,
+      stateStr: 'PRIMARY',
+      uptime: 90,
+      optime: { ts: Timestamp({ t: 1781183046, i: 1 }), t: Long('1') },
+      optimeDate: 2026-06-11T13:04:06.000Z,
+      optimeWritten: { ts: Timestamp({ t: 1781183046, i: 1 }), t: Long('1') },
+      optimeWrittenDate: 2026-06-11T13:04:06.000Z,
+      lastAppliedWallTime: 2026-06-11T13:04:06.202Z,
+      lastDurableWallTime: 2026-06-11T13:04:06.202Z,
+      lastWrittenWallTime: 2026-06-11T13:04:06.202Z,
+      syncSourceHost: '',
+      syncSourceId: -1,
+      infoMessage: 'Could not find member to sync from',
+      electionTime: Timestamp({ t: 1781183037, i: 2 }),
+      electionDate: 2026-06-11T13:03:57.000Z,
+      configVersion: 1,
+      configTerm: 1,
+      self: true,
+      lastHeartbeatMessage: ''
+    }
+  ],
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183046, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183046, i: 1 })
+}
+test
+
+
+rs.initiate({
+  _id: "configReplSet",
+  configsvr: true,
+  members: [
+    { _id: 0, host: "localhost:27019" }
+  ]
+})
+{
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183037, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183037, i: 1 })
+}
+rs.status()
+{
+    lastWrittenWallTime: 2026-06-11T13:04:06.202Z
+  },
+  lastStableRecoveryTimestamp: Timestamp({ t: 1781183037, i: 1 }),
+  electionCandidateMetrics: {
+    lastElectionReason: 'electionTimeout',
+    lastElectionDate: 2026-06-11T13:03:57.744Z,
+    electionTerm: Long('1'),
+    lastCommittedOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    lastSeenWrittenOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    lastSeenOpTimeAtElection: { ts: Timestamp({ t: 1781183037, i: 1 }), t: Long('-1') },
+    numVotesNeeded: 1,
+    priorityAtElection: 1,
+    electionTimeoutMillis: Long('10000'),
+    newTermStartDate: 2026-06-11T13:03:57.823Z,
+    wMajorityWriteAvailabilityDate: 2026-06-11T13:03:58.158Z
+  },
+  members: [
+    {
+      _id: 0,
+      name: 'localhost:27019',
+      health: 1,
+      state: 1,
+      stateStr: 'PRIMARY',
+      uptime: 90,
+      optime: { ts: Timestamp({ t: 1781183046, i: 1 }), t: Long('1') },
+      optimeDate: 2026-06-11T13:04:06.000Z,
+      optimeWritten: { ts: Timestamp({ t: 1781183046, i: 1 }), t: Long('1') },
+      optimeWrittenDate: 2026-06-11T13:04:06.000Z,
+      lastAppliedWallTime: 2026-06-11T13:04:06.202Z,
+      lastDurableWallTime: 2026-06-11T13:04:06.202Z,
+      lastWrittenWallTime: 2026-06-11T13:04:06.202Z,
+      syncSourceHost: '',
+      syncSourceId: -1,
+      infoMessage: 'Could not find member to sync from',
+      electionTime: Timestamp({ t: 1781183037, i: 2 }),
+      electionDate: 2026-06-11T13:03:57.000Z,
+      configVersion: 1,
+      configTerm: 1,
+      self: true,
+      lastHeartbeatMessage: ''
+    }
+  ],
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183046, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183046, i: 1 })
+}
+test
+
+
+rs.initiate({
+  _id: "shard1ReplSet",
+  members: [
+    { _id: 0, host: "localhost:27011" }
+  ]
+})
+{
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183106, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183106, i: 1 })
+}
+test
+
+
+sh.addShard("shard1ReplSet/localhost:27011")
+sh.addShard("shard2ReplSet/localhost:27012")
+{
+  shardAdded: 'shard2ReplSet',
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183214, i: 13 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183214, i: 13 })
+}
+sh.enableSharding("eCommerceDB")
+{
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183225, i: 21 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183225, i: 21 })
+}
+sh.shardCollection(
+  "eCommerceDB.orders",
+  { customer_id: "hashed" }
+)
+{
+  collectionsharded: 'eCommerceDB.orders',
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1781183235, i: 50 }),
+    signature: {
+      hash: Binary.createFromBase64('AAAAAAAAAAAAAAAAAAAAAAAAAAA=', 0),
+      keyId: Long('0')
+    }
+  },
+  operationTime: Timestamp({ t: 1781183235, i: 49 })
+}
+use eCommerceDB
+for(let i=0;i<1000;i++){
+  db.orders.insertOne({
+    customer_id:"cust_"+i,
+    amount:Math.random()*100
+  })
+}
+switched to db eCommerceDB
+for(let i=0;i<1000;i++){
+  db.orders.insertOne({
+    customer_id:"cust_"+i,
+    amount:Math.random()*100
+  })
+}
+{
+  acknowledged: true,
+  insertedId: ObjectId('6a2ab32fb06b8ddbfc98cc56')
+}
+sh.status()
+shardingVersion
+{
+  _id: ObjectId('6a2ab23e5699f42fa8cf8878'),
+  clusterId: ObjectId('6a2ab23e5699f42fa8cf8877')
+}
+shards
+[
+  {
+    _id: 'shard1ReplSet',
+    host: 'shard1ReplSet/localhost:27011',
+    topologyTime: Timestamp({ t: 1781183213, i: 14 }),
+    replSetConfigVersion: -1
+  },
+  {
+    _id: 'shard2ReplSet',
+    host: 'shard2ReplSet/localhost:27012',
+    topologyTime: Timestamp({ t: 1781183213, i: 62 }),
+    replSetConfigVersion: -1
+  }
+]
+active mongoses
+[
+  {
+    '8.3.2': 1
+  }
+]
+autosplit
+{
+  'Currently enabled': 'yes'
+}
+balancer
+{
+  'Currently enabled': 'yes',
+  'Currently running': 'no',
+  'Failed balancer rounds in last 5 attempts': 0,
+  'Migration Results for the last 24 hours': 'No recent migrations'
+}
+shardedDataDistribution
+[
+  {
+    ns: 'config.system.sessions',
+    shards: [
+      {
+        shardName: 'shard1ReplSet',
+        numOrphanedDocs: 0,
+        numOwnedDocuments: 13,
+        ownedSizeBytes: 1287,
+        orphanedSizeBytes: 0
+      }
+    ]
+  },
+  {
+    ns: 'eCommerceDB.orders',
+    shards: [
+      {
+        shardName: 'shard1ReplSet',
+        numOrphanedDocs: 0,
+        numOwnedDocuments: 491,
+        ownedSizeBytes: 30933,
+        orphanedSizeBytes: 0
+      },
+      {
+        shardName: 'shard2ReplSet',
+        numOrphanedDocs: 0,
+        numOwnedDocuments: 509,
+        ownedSizeBytes: 32067,
+        orphanedSizeBytes: 0
+      }
+    ]
+  }
+]
+databases
+[
+            'last modified': Timestamp({ t: 1, i: 0 })
+          }
+        ],
+        tags: []
+      }
+    }
+  },
+  {
+    database: {
+      _id: 'eCommerceDB',
+      primary: 'shard1ReplSet',
+      version: {
+        uuid: UUID('809ab6f0-4e8f-4748-9be0-b7230158e25a'),
+        timestamp: Timestamp({ t: 1781183225, i: 9 }),
+        lastMod: 1
+      }
+    },
+    collections: {
+      'eCommerceDB.orders': {
+        shardKey: {
+          customer_id: 'hashed'
+        },
+        unique: false,
+        balancing: true,
+        allowMigrations: true,
+        chunkMetadata: [
+          {
+            shard: 'shard1ReplSet',
+            nChunks: 1
+          },
+          {
+            shard: 'shard2ReplSet',
+            nChunks: 1
+          }
+        ],
+        chunks: [
+          {
+            min: {
+              customer_id: MinKey()
+            },
+            max: {
+              customer_id: 0
+            },
+            'on shard': 'shard2ReplSet',
+            'last modified': Timestamp({ t: 1, i: 0 })
+          },
+          {
+            min: {
+              customer_id: 0
+            },
+            max: {
+              customer_id: MaxKey()
+            },
+            'on shard': 'shard1ReplSet',
+            'last modified': Timestamp({ t: 1, i: 1 })
+          }
+        ],
+        tags: []
+      }
+    }
+  }
+]
+sh.status()
+shardingVersion
+{
+  _id: ObjectId('6a2ab23e5699f42fa8cf8878'),
+  clusterId: ObjectId('6a2ab23e5699f42fa8cf8877')
+}
+shards
+[
+  {
+    _id: 'shard1ReplSet',
+    host: 'shard1ReplSet/localhost:27011',
+    topologyTime: Timestamp({ t: 1781183213, i: 14 }),
+    replSetConfigVersion: -1
+  },
+  {
+    _id: 'shard2ReplSet',
+    host: 'shard2ReplSet/localhost:27012',
+    topologyTime: Timestamp({ t: 1781183213, i: 62 }),
+    replSetConfigVersion: -1
+  }
+]
+active mongoses
+[
+  {
+    '8.3.2': 1
+  }
+]
+autosplit
+{
+  'Currently enabled': 'yes'
+}
+balancer
+{
+  'Currently enabled': 'yes',
+  'Failed balancer rounds in last 5 attempts': 0,
+  'Currently running': 'no',
+  'Migration Results for the last 24 hours': 'No recent migrations'
+}
+shardedDataDistribution
+[
+  {
+    ns: 'eCommerceDB.orders',
+    shards: [
+      {
+        shardName: 'shard2ReplSet',
+        numOrphanedDocs: 0,
+        numOwnedDocuments: 509,
+        ownedSizeBytes: 32067,
+        orphanedSizeBytes: 0
+      },
+      {
+        shardName: 'shard1ReplSet',
+        numOrphanedDocs: 0,
+        numOwnedDocuments: 491,
+        ownedSizeBytes: 30933,
+        orphanedSizeBytes: 0
+      }
+    ]
+  },
+  {
+    ns: 'config.system.sessions',
+    shards: [
+      {
+        shardName: 'shard1ReplSet',
+        numOrphanedDocs: 0,
+        numOwnedDocuments: 13,
+        ownedSizeBytes: 1287,
+        orphanedSizeBytes: 0
+      }
+    ]
+  }
+]
+databases
+[
+              _id: MinKey()
+            },
+            max: {
+              _id: MaxKey()
+            },
+            'on shard': 'shard1ReplSet',
+            'last modified': Timestamp({ t: 1, i: 0 })
+          }
+        ],
+        tags: []
+      }
+    }
+  },
+  {
+    database: {
+      _id: 'eCommerceDB',
+      primary: 'shard1ReplSet',
+      version: {
+        uuid: UUID('809ab6f0-4e8f-4748-9be0-b7230158e25a'),
+        timestamp: Timestamp({ t: 1781183225, i: 9 }),
+        lastMod: 1
+      }
+    },
+    collections: {
+      'eCommerceDB.orders': {
+        shardKey: {
+          customer_id: 'hashed'
+        },
+        unique: false,
+        balancing: true,
+        allowMigrations: true,
+        chunkMetadata: [
+          {
+            shard: 'shard1ReplSet',
+            nChunks: 1
+          },
+          {
+            shard: 'shard2ReplSet',
+            nChunks: 1
+          }
+        ],
+        chunks: [
+          {
+            min: {
+              customer_id: MinKey()
+            },
+            max: {
+              customer_id: 0
+            },
+            'on shard': 'shard2ReplSet',
+            'last modified': Timestamp({ t: 1, i: 0 })
+          },
+          {
+            min: {
+              customer_id: 0
+            },
+            max: {
+              customer_id: MaxKey()
+            },
+            'on shard': 'shard1ReplSet',
+            'last modified': Timestamp({ t: 1, i: 1 })
+          }
+        ],
+        tags: []
+      }
+    }
+  }
+]
+[mongos] eCommerceDB
+
