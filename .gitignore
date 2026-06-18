@@ -1,0 +1,11 @@
+target/
+.metadata/
+.classpath
+.project
+.settings/
+*.class
+hi/
+src/bin/
+*.log
+.DS_Store
+__MACOSX/
