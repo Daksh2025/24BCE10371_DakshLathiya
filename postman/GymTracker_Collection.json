@@ -1,0 +1,1077 @@
+{
+  "info": {
+    "_postman_id": "88c63e42-eac6-472f-95de-73446a08657c",
+    "name": "Gym Tracker API - India",
+    "description": "Fitness & Gym Member Tracker — Spring Boot + MongoDB\n\nSaare sample data Indian names, addresses aur contacts ke saath hain.\n\nRelationships:\n- Member → SubscriptionPlan (Many-to-One)\n- Plan → Members (One-to-Many)\n- Trainer → Department (Many-to-One)\n\nbase_url variable: http://localhost:8080",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "dept_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "plan_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "trainer_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "member_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "01. Departments",
+      "item": [
+        {
+          "name": "Create Department",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/departments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "departments"
+              ]
+            },
+            "description": "Naya vibhag banaye. Agar naam pehle se hai toh 409 milega.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Yoga aur Pranayam\",\n  \"description\": \"Traditional Indian yoga, pranayam and meditation sessions\",\n  \"location\": \"Pratham Manzil - Purv Vibhag\",\n  \"contactEmail\": \"yoga@fitnessindia.in\",\n  \"active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Departments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/departments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "departments"
+              ]
+            },
+            "description": "Sabhi vibhagon ki list."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Active Departments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/departments/active",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "departments",
+                "active"
+              ]
+            },
+            "description": "Sirf active vibhag."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Department by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/departments/{{dept_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "departments",
+                "{{dept_id}}"
+              ]
+            },
+            "description": "ID se vibhag dhundhein."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Department",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/departments/{{dept_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "departments",
+                "{{dept_id}}"
+              ]
+            },
+            "description": "Vibhag ki jaankari update karein.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Yoga aur Pranayam\",\n  \"description\": \"Updated: Yoga, Pranayam aur Ayurvedic wellness\",\n  \"location\": \"Dwitiya Manzil - Uttar Vibhag\",\n  \"contactEmail\": \"yoga@fitnessindia.in\",\n  \"active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Department",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/departments/{{dept_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "departments",
+                "{{dept_id}}"
+              ]
+            },
+            "description": "Vibhag delete karein. Agar trainer assigned hai toh 400 milega."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "02. Subscription Plans",
+      "item": [
+        {
+          "name": "Create Monthly Plan",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans"
+              ]
+            },
+            "description": "Maasik plan banaye - Rs. 999 per month.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Maasik\",\n  \"price\": 999.0,\n  \"durationMonths\": 1,\n  \"description\": \"Ek mahine ki standard membership\",\n  \"features\": [\n    \"Gym floor access\",\n    \"Group classes\",\n    \"Locker room\",\n    \"Towel service\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Annual Plan",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans"
+              ]
+            },
+            "description": "Varshik plan - Rs. 8999 per year.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Varshik\",\n  \"price\": 8999.0,\n  \"durationMonths\": 12,\n  \"description\": \"Best value - 25% ki bachat\",\n  \"features\": [\n    \"Gym floor access\",\n    \"Sabhi classes\",\n    \"Locker room\",\n    \"1 PT session per month\",\n    \"Diet consultation\",\n    \"Guest passes (2/month)\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create VIP Plan",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans"
+              ]
+            },
+            "description": "VIP Platinum plan - Rs. 2499 per month.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"VIP Platinum\",\n  \"price\": 2499.0,\n  \"durationMonths\": 1,\n  \"description\": \"Premium all-inclusive membership\",\n  \"features\": [\n    \"Gym floor access\",\n    \"Sabhi classes\",\n    \"Locker room\",\n    \"4 PT sessions per month\",\n    \"Personalised diet plan\",\n    \"Ayurvedic consultation\",\n    \"Towel aur shower service\",\n    \"Unlimited guest passes\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Plans",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans"
+              ]
+            },
+            "description": "Sabhi subscription plans ki list."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Plan by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans/{{plan_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans",
+                "{{plan_id}}"
+              ]
+            },
+            "description": "ID se plan dhundhein."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Plan Members (One-to-Many)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans/{{plan_id}}/members",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans",
+                "{{plan_id}}",
+                "members"
+              ]
+            },
+            "description": "Is plan ke sabhi member IDs. One-to-Many relationship ka result."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Plan",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans/{{plan_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans",
+                "{{plan_id}}"
+              ]
+            },
+            "description": "Plan ki details update karein.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Maasik\",\n  \"price\": 1099.0,\n  \"durationMonths\": 1,\n  \"description\": \"Updated maasik plan\",\n  \"features\": [\n    \"Gym floor access\",\n    \"Group classes\",\n    \"Locker room\",\n    \"Towel service\",\n    \"Protein shake (1/day)\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Plan",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans/{{plan_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans",
+                "{{plan_id}}"
+              ]
+            },
+            "description": "Plan delete karein. Agar members subscribed hain toh 400 milega."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "03. Trainers",
+      "item": [
+        {
+          "name": "Create Trainer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/trainers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trainers"
+              ]
+            },
+            "description": "Naya trainer banaye aur department se link karein (Many-to-One). dept_id variable mein real ID daalni hogi.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rajesh Kumar Sharma\",\n  \"email\": \"rajesh.sharma@fitnessindia.in\",\n  \"phone\": \"9876543210\",\n  \"specialization\": \"Strength Training aur Powerlifting\",\n  \"certification\": \"NSCA-CSCS, ACE-CPT\",\n  \"available\": true,\n  \"departmentId\": \"{{dept_id}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Trainer 2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/trainers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trainers"
+              ]
+            },
+            "description": "Dusri trainer - Yoga specialist.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Priya Nair Menon\",\n  \"email\": \"priya.nair@fitnessindia.in\",\n  \"phone\": \"9845671230\",\n  \"specialization\": \"Yoga aur Zumba\",\n  \"certification\": \"RYT-500, ACE-GFI\",\n  \"available\": true,\n  \"departmentId\": \"{{dept_id}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Trainers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/trainers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trainers"
+              ]
+            },
+            "description": "Sabhi trainers ki list."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Available Trainers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/trainers/available",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trainers",
+                "available"
+              ]
+            },
+            "description": "Sirf available trainers."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Trainer by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/trainers/{{trainer_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trainers",
+                "{{trainer_id}}"
+              ]
+            },
+            "description": "ID se trainer dhundhein."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Trainers by Department (Many-to-One)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/trainers/department/{{dept_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trainers",
+                "department",
+                "{{dept_id}}"
+              ]
+            },
+            "description": "Ek vibhag ke sabhi trainers. Many-to-One reverse lookup ka example."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Trainers by Specialization",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/trainers/specialization/Yoga%20aur%20Zumba",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trainers",
+                "specialization",
+                "Yoga%20aur%20Zumba"
+              ]
+            },
+            "description": "Specialization se trainers filter karein."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Trainer",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/trainers/{{trainer_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trainers",
+                "{{trainer_id}}"
+              ]
+            },
+            "description": "Trainer ki details update karein.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rajesh Kumar Sharma\",\n  \"email\": \"rajesh.sharma@fitnessindia.in\",\n  \"phone\": \"9876500000\",\n  \"specialization\": \"Strength Training, Powerlifting aur CrossFit\",\n  \"certification\": \"NSCA-CSCS, ACE-CPT, CrossFit L2\",\n  \"available\": true,\n  \"departmentId\": \"{{dept_id}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Trainer",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/trainers/{{trainer_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trainers",
+                "{{trainer_id}}"
+              ]
+            },
+            "description": "Trainer delete karein."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "04. Members",
+      "item": [
+        {
+          "name": "Sign Up New Member",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/members",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "members"
+              ]
+            },
+            "description": "Naya member register karein. subscriptionStartDate aur subscriptionEndDate plan ke durationMonths se automatic set hoti hai.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ananya Singh Chauhan\",\n  \"email\": \"ananya.singh@gmail.com\",\n  \"phone\": \"9988776655\",\n  \"address\": \"42, Vasant Vihar, New Delhi - 110057\",\n  \"dateOfBirth\": \"1995-08-22\",\n  \"emergencyContactName\": \"Vikram Singh Chauhan\",\n  \"emergencyContactPhone\": \"9988776600\",\n  \"planId\": \"{{plan_id}}\",\n  \"trainerId\": \"{{trainer_id}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Sign Up Member 2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/members",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "members"
+              ]
+            },
+            "description": "Dusra member register karein.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Arjun Ramesh Patel\",\n  \"email\": \"arjun.patel@gmail.com\",\n  \"phone\": \"9977556644\",\n  \"address\": \"15, Koregaon Park, Pune - 411001\",\n  \"dateOfBirth\": \"1990-03-14\",\n  \"emergencyContactName\": \"Sunita Ramesh Patel\",\n  \"emergencyContactPhone\": \"9977556600\",\n  \"planId\": \"{{plan_id}}\",\n  \"trainerId\": \"{{trainer_id}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Sign Up Member 3",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/members",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "members"
+              ]
+            },
+            "description": "Teesra member - bina trainer ke.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Meera Krishnamurthy Rao\",\n  \"email\": \"meera.rao@gmail.com\",\n  \"phone\": \"9866554433\",\n  \"address\": \"8, Indiranagar, Bengaluru - 560038\",\n  \"dateOfBirth\": \"1998-11-05\",\n  \"emergencyContactName\": \"Suresh Krishnamurthy\",\n  \"emergencyContactPhone\": \"9866554400\",\n  \"planId\": \"{{plan_id}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Members",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/members",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "members"
+              ]
+            },
+            "description": "Sabhi members ki list."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Member by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/members/{{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "members",
+                "{{member_id}}"
+              ]
+            },
+            "description": "ID se member dhundhein."
+          },
+          "response": []
+        },
+        {
+          "name": "Expiring This Month",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/members/expiring-this-month",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "members",
+                "expiring-this-month"
+              ]
+            },
+            "description": "Is mahine expire hone wale subscriptions. Renewal reminder ke liye use karein."
+          },
+          "response": []
+        },
+        {
+          "name": "Already Expired Members",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/members/expired",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "members",
+                "expired"
+              ]
+            },
+            "description": "Jin members ka subscription khatam ho chuka hai."
+          },
+          "response": []
+        },
+        {
+          "name": "Members by Status - ACTIVE",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/members/status/ACTIVE",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "members",
+                "status",
+                "ACTIVE"
+              ]
+            },
+            "description": "Status se filter: ACTIVE | INACTIVE | CANCELLED | EXPIRED | SUSPENDED"
+          },
+          "response": []
+        },
+        {
+          "name": "Members by Plan (Many-to-One)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/members/plan/{{plan_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "members",
+                "plan",
+                "{{plan_id}}"
+              ]
+            },
+            "description": "Ek plan ke sabhi members. Many-to-One reverse lookup."
+          },
+          "response": []
+        },
+        {
+          "name": "Members by Trainer",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/members/trainer/{{trainer_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "members",
+                "trainer",
+                "{{trainer_id}}"
+              ]
+            },
+            "description": "Ek trainer ke sabhi assigned members."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Member Info",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/members/{{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "members",
+                "{{member_id}}"
+              ]
+            },
+            "description": "Member ka contact info, health notes ya trainer update karein.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ananya Singh Chauhan\",\n  \"email\": \"ananya.singh@gmail.com\",\n  \"phone\": \"9988700000\",\n  \"address\": \"12, DLF Phase 2, Gurugram - 122002\",\n  \"dateOfBirth\": \"1995-08-22\",\n  \"emergencyContactName\": \"Vikram Singh Chauhan\",\n  \"emergencyContactPhone\": \"9988776600\",\n  \"healthNotes\": \"Ghutne ki takleef - high impact exercises avoid karein\",\n  \"status\": \"ACTIVE\",\n  \"trainerId\": \"{{trainer_id}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upgrade Membership Plan",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/members/{{member_id}}/upgrade-plan",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "members",
+                "{{member_id}}",
+                "upgrade-plan"
+              ]
+            },
+            "description": "Member ka plan upgrade ya change karein. Purane plan ki memberIds list clean hogi, naye plan mein add hoga. Subscription dates aaj se reset.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"planId\": \"{{plan_id}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Member (Cancel)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/members/{{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "members",
+                "{{member_id}}"
+              ]
+            },
+            "description": "Member profile permanently delete karein. Plan ki memberIds list se bhi automatically remove hoga."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
