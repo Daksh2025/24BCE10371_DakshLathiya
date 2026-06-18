@@ -1,0 +1,316 @@
+**1ST TASK**
+
+CREATE DATABASE vitcampus;
+
+USE vitcampus;
+
+DROP TABLE IF EXISTS worker;
+
+CREATE TABLE Worker (
+    WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    FIRST_NAME CHAR(25),
+    LAST_NAME CHAR(25),
+    SALARY INT(15),
+    JOINING_DATE DATETIME,
+    DEPARTMENT CHAR(25)
+);
+
+INSERT INTO Worker
+(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+(001, 'Monika', 'Arora', 100000, '2014-02-20 09:00:00', 'HR'),
+(002, 'Niharika', 'Verma', 80000, '2014-06-11 09:00:00', 'Admin'),
+(003, 'Vishal', 'Singhal', 300000, '2014-02-20 09:00:00', 'HR'),
+(004, 'Amitabh', 'Singh', 500000, '2014-02-20 09:00:00', 'Admin'),
+(005, 'Vivek', 'Bhati', 500000, '2014-06-11 09:00:00', 'Admin'),
+(006, 'Vipul', 'Diwan', 200000, '2014-06-11 09:00:00', 'Account'),
+(007, 'Satish', 'Kumar', 75000, '2014-01-20 09:00:00', 'Account'),
+(008, 'Geetika', 'Chauhan', 90000, '2014-04-11 09:00:00', 'Admin');
+
+SELECT * FROM worker;
+
+SELECT * FROM worker
+WHERE salary > 150000;
+
+SELECT * FROM worker
+WHERE salary < 100000;
+
+SELECT * FROM worker
+WHERE salary BETWEEN 100000 AND 250000;
+
+SELECT * FROM worker
+WHERE salary NOT BETWEEN 100000 AND 250000;
+
+SELECT * FROM worker
+WHERE department IN ('HR','IT');
+
+SELECT * FROM worker
+WHERE department NOT IN ('HR','Admin');
+
+SELECT * FROM worker
+WHERE worker_id IN (1,3,5);
+
+SELECT * FROM worker
+WHERE worker_id NOT IN (2,4,6);
+
+SELECT first_name, salary
+FROM worker
+WHERE salary > 100000;
+
+SELECT first_name, department
+FROM worker
+WHERE department IN ('Finance','CSE');
+
+SELECT * FROM worker
+WHERE salary BETWEEN 70000 AND 180000
+AND department NOT IN ('Admin');
+
+SELECT * FROM worker
+WHERE salary > 90000
+AND salary < 300000;
+
+
+**2nd Task** 
+
+
+CREATE DATABASE vitcampus;
+
+USE vitcampus;
+
+DROP TABLE IF EXISTS Worker;
+
+CREATE TABLE Worker (
+    WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    FIRST_NAME CHAR(25),
+    LAST_NAME CHAR(25),
+    SALARY INT(15),
+    JOINING_DATE DATETIME,
+    DEPARTMENT CHAR(25)
+);
+
+INSERT INTO Worker
+(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+(001, 'Monika', 'Arora', 100000, '2014-02-20 09:00:00', 'HR'),
+(002, 'Niharika', 'Verma', 80000, '2014-06-11 09:00:00', 'Admin'),
+(003, 'Vishal', 'Singhal', 300000, '2014-02-20 09:00:00', 'HR'),
+(004, 'Amitabh', 'Singh', 500000, '2014-02-20 09:00:00', 'Admin'),
+(005, 'Vivek', 'Bhati', 500000, '2014-06-11 09:00:00', 'Admin'),
+(006, 'Vipul', 'Diwan', 200000, '2014-06-11 09:00:00', 'Account'),
+(007, 'Satish', 'Kumar', 75000, '2014-01-20 09:00:00', 'Account'),
+(008, 'Geetika', 'Chauhan', 90000, '2014-04-11 09:00:00', 'Admin');
+
+
+SELECT * FROM Worker
+WHERE FIRST_NAME LIKE 'V%';
+
+SELECT * FROM Worker
+WHERE FIRST_NAME LIKE '%a';
+
+SELECT * FROM Worker
+WHERE FIRST_NAME LIKE '%h%';
+
+SELECT * FROM Worker
+WHERE FIRST_NAME LIKE '_i%';
+
+SELECT * FROM Worker
+WHERE FIRST_NAME LIKE '__t%';
+
+SELECT * FROM Worker
+WHERE FIRST_NAME LIKE 'A%';
+
+SELECT * FROM Worker
+WHERE FIRST_NAME LIKE '%k';
+
+SELECT * FROM Worker
+WHERE FIRST_NAME LIKE '_____';
+
+SELECT * FROM Worker
+WHERE DEPARTMENT LIKE 'A%';
+
+SELECT * FROM Worker
+WHERE DEPARTMENT LIKE '%n';
+
+SELECT * FROM Worker
+WHERE DEPARTMENT LIKE '_R';
+
+SELECT * FROM Worker
+WHERE FIRST_NAME NOT LIKE 'V%';
+
+SELECT * FROM Worker
+WHERE DEPARTMENT NOT LIKE 'H%';
+
+SELECT * FROM Worker
+WHERE FIRST_NAME LIKE '%i%';
+
+SELECT * FROM Worker
+WHERE FIRST_NAME LIKE 'M%n';
+
+
+**3RD TASK**
+
+CREATE DATABASE vitcampus;
+
+USE vitcampus;
+
+DROP TABLE IF EXISTS Worker;
+
+CREATE TABLE Worker (
+    WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    FIRST_NAME CHAR(25),
+    LAST_NAME CHAR(25),
+    SALARY INT(15),
+    JOINING_DATE DATETIME,
+    DEPARTMENT CHAR(25)
+);
+
+INSERT INTO Worker
+(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+(001, 'Monika', 'Arora', 100000, '2014-02-20 09:00:00', 'HR'),
+(002, 'Niharika', 'Verma', 80000, '2014-06-11 09:00:00', 'Admin'),
+(003, 'Vishal', 'Singhal', 300000, '2014-02-20 09:00:00', 'HR'),
+(004, 'Amitabh', 'Singh', 500000, '2014-02-20 09:00:00', 'Admin'),
+(005, 'Vivek', 'Bhati', 500000, '2014-06-11 09:00:00', 'Admin'),
+(006, 'Vipul', 'Diwan', 200000, '2014-06-11 09:00:00', 'Account'),
+(007, 'Satish', 'Kumar', 75000, '2014-01-20 09:00:00', 'Account'),
+(008, 'Geetika', 'Chauhan', 90000, '2014-04-11 09:00:00', 'Admin');
+
+SELECT * FROM Worker;
+
+SELECT COUNT(*) AS total_workers
+FROM Worker;
+
+SELECT SUM(SALARY) AS total_salary
+FROM Worker;
+
+SELECT AVG(SALARY) AS average_salary
+FROM Worker;
+
+SELECT MAX(SALARY) AS highest_salary
+FROM Worker;
+
+SELECT MIN(SALARY) AS lowest_salary
+FROM Worker;
+
+SELECT COUNT(DEPARTMENT) AS total_departments
+FROM Worker;
+
+SELECT COUNT(DISTINCT DEPARTMENT) AS unique_departments
+FROM Worker;
+
+
+**4TH TASK**
+
+
+CREATE DATABASE vitcampus;
+
+USE vitcampus;
+
+DROP TABLE IF EXISTS Worker;
+
+CREATE TABLE Worker (
+    WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    FIRST_NAME CHAR(25),
+    LAST_NAME CHAR(25),
+    SALARY INT(15),
+    JOINING_DATE DATETIME,
+    DEPARTMENT CHAR(25)
+);
+
+INSERT INTO Worker
+(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+(001, 'Monika', 'Arora', 100000, '2014-02-20 09:00:00', 'HR'),
+(002, 'Niharika', 'Verma', 80000, '2014-06-11 09:00:00', 'Admin'),
+(003, 'Vishal', 'Singhal', 300000, '2014-02-20 09:00:00', 'HR'),
+(004, 'Amitabh', 'Singh', 500000, '2014-02-20 09:00:00', 'Admin'),
+(005, 'Vivek', 'Bhati', 500000, '2014-06-11 09:00:00', 'Admin'),
+(006, 'Vipul', 'Diwan', 200000, '2014-06-11 09:00:00', 'Account'),
+(007, 'Satish', 'Kumar', 75000, '2014-01-20 09:00:00', 'Account'),
+(008, 'Geetika', 'Chauhan', 90000, '2014-04-11 09:00:00', 'Admin');
+
+SELECT worker_id, first_name, salary,
+CASE
+    WHEN salary > 300000 THEN 'Rich People'
+    WHEN salary BETWEEN 100000 AND 300000 THEN 'Middle Class'
+    ELSE 'Poor'
+END AS status
+FROM Worker;
+
+
+
+**5TH TASK**
+
+CREATE DATABASE vitcampus;
+
+USE vitcampus;
+
+DROP TABLE IF EXISTS Worker;
+
+CREATE TABLE Worker (
+    WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    FIRST_NAME CHAR(25),
+    LAST_NAME CHAR(25),
+    SALARY INT(15),
+    JOINING_DATE DATETIME,
+    DEPARTMENT CHAR(25)
+);
+
+INSERT INTO Worker
+(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+(001, 'Monika', 'Arora', 100000, '2014-02-20 09:00:00', 'HR'),
+(002, 'Niharika', 'Verma', 80000, '2014-06-11 09:00:00', 'Admin'),
+(003, 'Vishal', 'Singhal', 300000, '2014-02-20 09:00:00', 'HR'),
+(004, 'Amitabh', 'Singh', 500000, '2014-02-20 09:00:00', 'Admin'),
+(005, 'Vivek', 'Bhati', 500000, '2014-06-11 09:00:00', 'Admin'),
+(006, 'Vipul', 'Diwan', 200000, '2014-06-11 09:00:00', 'Account'),
+(007, 'Satish', 'Kumar', 75000, '2014-01-20 09:00:00', 'Account'),
+(008, 'Geetika', 'Chauhan', 90000, '2014-04-11 09:00:00', 'Admin');
+
+SELECT * FROM Worker;
+
+SELECT * FROM Worker
+WHERE FIRST_NAME LIKE '_i__a_';
+
+SELECT SALARY
+FROM Worker
+WHERE DEPARTMENT = 'Admin';
+
+SELECT SALARY FROM Worker
+UNION ALL
+SELECT SALARY FROM Worker;
+
+SELECT * FROM Worker;
+
+SELECT WORKER_ID AS RollNumber
+FROM Worker;
+
+SELECT DISTINCT(DEPARTMENT)
+FROM Worker;
+
+SELECT WORKER_ID, FIRST_NAME, SALARY,
+CASE
+    WHEN SALARY > 300000 THEN 'Rich People'
+    WHEN SALARY >= 100000 AND SALARY <= 299999 THEN 'Middle'
+    ELSE 'Poor'
+END AS Status
+FROM Worker;
+
+SELECT MIN(SALARY)
+FROM Worker
+WHERE DEPARTMENT = 'Admin';
+
+SELECT MAX(SALARY)
+FROM Worker
+WHERE DEPARTMENT = 'Admin';
+
+CREATE VIEW minSalaryAdmin AS
+SELECT MIN(SALARY) AS MinimumSalary
+FROM Worker
+WHERE DEPARTMENT = 'Admin';
+
+CREATE VIEW maxSalaryAdmin AS
+SELECT MAX(SALARY) AS MaximumSalary
+FROM Worker
+WHERE DEPARTMENT = 'Admin';
+
+SELECT * FROM minSalaryAdmin;
+
+SELECT * FROM maxSalaryAdmin;

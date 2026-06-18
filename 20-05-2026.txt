@@ -1,0 +1,136 @@
+** 1ST TASK **
+
+USE vitcampus;
+
+DROP TABLE IF EXISTS Persons;
+
+CREATE TABLE Persons (
+    ID INT NOT NULL PRIMARY KEY,
+    LastName VARCHAR(255) UNIQUE NOT NULL,
+    FirstName VARCHAR(255) NOT NULL,
+    Age INT CHECK (Age >= 18),
+    City VARCHAR(100) DEFAULT 'Ahmedabad'
+);
+
+DESC Persons;
+
+INSERT INTO Persons (ID, LastName, FirstName, Age)
+VALUES
+(1, 'Patel', 'Rahul', 21);
+
+INSERT INTO Persons (ID, LastName, FirstName, Age, City)
+VALUES
+(2, 'Sharma', 'Aisha', 22, 'Mumbai');
+
+INSERT INTO Persons (ID, LastName, FirstName, Age)
+VALUES
+(3, 'Khan', 'Arjun', 25);
+
+SELECT * FROM Persons;
+
+ALTER TABLE Persons
+ADD CONSTRAINT chk_age
+CHECK (Age >= 18);
+
+ALTER TABLE Persons
+MODIFY FirstName VARCHAR(255) NOT NULL;
+
+ALTER TABLE Persons
+ADD CONSTRAINT unique_city UNIQUE (City);
+
+ALTER TABLE Persons
+DROP INDEX unique_city;
+
+ALTER TABLE Persons
+ADD Email VARCHAR(100) UNIQUE;
+
+ALTER TABLE Persons
+ADD Country VARCHAR(50) DEFAULT 'India';
+
+SELECT * FROM Persons;
+
+UPDATE Persons
+SET City = 'Delhi'
+WHERE ID = 1;
+
+DELETE FROM Persons
+WHERE ID = 3;
+
+DESC Persons;
+
+** 2ND TASK **
+
+USE vitcampus;
+
+DROP TABLE IF EXISTS Student;
+
+CREATE TABLE Student (
+    sid INT,
+    sname VARCHAR(50),
+    email VARCHAR(100)
+);
+
+DESC Student;
+
+ALTER TABLE Student
+ADD CONSTRAINT pk_student
+PRIMARY KEY (sid);
+
+DESC Student;
+
+ALTER TABLE Student
+DROP PRIMARY KEY;
+
+DESC Student;
+
+ALTER TABLE Student
+ADD CONSTRAINT pk_email
+PRIMARY KEY (email);
+
+DESC Student;
+
+** 3RD TASK **
+
+USE vitcampus;
+
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS category;
+
+CREATE TABLE category(
+    cid INT PRIMARY KEY,
+    cname VARCHAR(100) NOT NULL
+);
+
+INSERT INTO category VALUES
+(101, 'Electronics'),
+(102, 'Home Appliances');
+
+SELECT * FROM category;
+
+CREATE TABLE products (
+    pid INT PRIMARY KEY,
+    pname VARCHAR(100) NOT NULL,
+    cid INT,
+    FOREIGN KEY (cid) REFERENCES category(cid)
+);
+
+DESC products;
+
+INSERT INTO products VALUES
+(501, 'Samsung Mobile', 101),
+(502, 'LG Refrigerator', 102),
+(503, 'Boat Earphones', 101);
+
+SELECT * FROM products;
+
+DELETE FROM category
+WHERE cid = 101;
+
+UPDATE products
+SET pname = 'Samsung Power Bank'
+WHERE pid = 501;
+
+INSERT INTO products VALUES
+(504, 'Power Bank Samsung', 101);
+
+SELECT * FROM products;

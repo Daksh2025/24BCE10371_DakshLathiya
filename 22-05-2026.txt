@@ -1,0 +1,70 @@
+USE vitcampus;
+
+DROP TABLE IF EXISTS HOD;
+DROP TABLE IF EXISTS departments;
+
+CREATE TABLE departments(
+    did INT PRIMARY KEY,
+    dname VARCHAR(25) NOT NULL UNIQUE
+);
+
+INSERT INTO departments VALUES
+(101,'CSE'),
+(102,'ECE'),
+(103,'Civil'),
+(106,'Aero'),
+(107,'Mech');
+
+SELECT * FROM departments
+ORDER BY did;
+
+CREATE TABLE HOD(
+    hid INT PRIMARY KEY,
+    hname VARCHAR(20) NOT NULL UNIQUE
+);
+
+INSERT INTO HOD VALUES
+(101,'Arun'),
+(102,'Jayanth'),
+(104,'Karthik'),
+(105,'Murali');
+
+SELECT * FROM HOD;
+
+SELECT *
+FROM departments
+CROSS JOIN HOD
+ORDER BY did ASC;
+
+SELECT *
+FROM departments
+INNER JOIN HOD
+ON departments.did = HOD.hid;
+
+SELECT *
+FROM departments
+NATURAL JOIN HOD;
+
+SELECT *
+FROM departments
+LEFT OUTER JOIN HOD
+ON departments.did = HOD.hid
+ORDER BY did ASC;
+
+SELECT *
+FROM departments
+RIGHT OUTER JOIN HOD
+ON departments.did = HOD.hid
+ORDER BY hid ASC;
+
+SELECT *
+FROM departments
+LEFT JOIN HOD
+ON departments.did = HOD.hid
+
+UNION
+
+SELECT *
+FROM departments
+RIGHT JOIN HOD
+ON departments.did = HOD.hid;
